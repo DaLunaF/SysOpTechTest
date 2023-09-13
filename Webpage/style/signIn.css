@@ -1,0 +1,17 @@
+#formSignIn
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label, select, button
+{
+    margin-top: 25px;
+}
+
+h1
+{
+    text-align: center;
+    font-size: 75px;
+}

@@ -46,11 +46,18 @@ $().ready(function(){
                     const json = JSON.parse(msg);
                     if(json.success)
                     {
-                        sessionStorage.setItem('username', json.response.username);
-                        if(json.response.role == "Administrador")
-                            window.location.replace("AdminPage.html");
+                        if(json.response != null)
+                        {
+                            sessionStorage.setItem('username', json.response.username);
+                            if(json.response.role == "Administrador")
+                                window.location.replace("AdminPage.html");
+                            else
+                                window.location.replace("EmployeePage.html");
+                        }
                         else
-                            window.location.replace("EmployeePage.html");
+                        {
+                            alert("Usuario no encontrado");
+                        }
                     }
                     else
                     {

@@ -74,6 +74,7 @@ $().ready(function(){
                     const json = JSON.parse(msg);
                     if(json.success)
                     {
+                        sendEmail($("#input_username").val(), $("#input_email").val());
                         alert("Enviamos un correo de confirmación a: "+$("#input_email").val());
                         sessionStorage.setItem("username", $("#input_username").val())
                         if($("#input_role").val() == "Administrador")
@@ -95,3 +96,14 @@ $().ready(function(){
         }
     });
 })
+
+function sendEmail(p_name, p_email)
+{
+    $.ajax({
+        type:'POST',
+        url: './../php/Mail.php',
+        data: {email: p_email, subject: `Bienvenido, ${p_name}`, message:`Bienvenido a SysOp a partir de este
+        momento formaras parte de una de las empresas más grandes de marketing digital
+        y diseño web de Monterrey`}
+    });
+}

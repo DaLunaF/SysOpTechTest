@@ -107,7 +107,8 @@ $().ready(function(){
                     const json = JSON.parse(msg);
                     if(json.success)
                     {
-                        alert("Se ha enviado un correo de confirmación a: " + formData[0].value);
+                        sendEmail($("#input_username"), $("#input_email"));
+                        alert("Se ha enviado un correo de confirmación a: " + formData[2].value);
                         
                         $("#employeeTable").append(`
                         <tr>
@@ -137,3 +138,14 @@ $().ready(function(){
         window.location.replace(".");
     })
 })
+
+function sendEmail(p_name, p_email)
+{
+    $.ajax({
+        type:'POST',
+        url: './../php/Mail.php',
+        data: {email: p_email, subject: `Bienvenido, ${p_name}`, message:`Bienvenido a SysOp a partir de este
+        momento formaras parte de una de las empresas más grandes de marketing digital
+        y diseño web de Monterrey`}
+    });
+}
